@@ -11,8 +11,7 @@ public class EventsgeneratorApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(EventsgeneratorApplication.class, args);
-		EventGenerator eventGenerator = new EventGenerator();
-		eventGenerator.generateEvent();
+
 	}
 
 }
