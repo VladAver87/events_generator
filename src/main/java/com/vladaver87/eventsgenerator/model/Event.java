@@ -1,18 +1,27 @@
 package com.vladaver87.eventsgenerator.model;
 
 import java.util.Date;
+import java.util.Random;
+import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 @Component
 @Scope("prototype")
 public class Event {
 	
-	private int id;
+	private UUID id;
 	private String eventType;
-	private Date eventTimeStamp;
-	private Date createTime;
+	private long eventTimeStamp;
+	private long createTime;
 	private Date deliveryTime;
 	private Date endTime;
 	private String serviceType;
@@ -21,80 +30,73 @@ public class Event {
 	private String endReason;
 	private String originationChannel;
 	
-	public int getId() {
-		return id;
+	
+	public Event() {
+		this.id = UUID.randomUUID();
+		this.eventType = "start";
+		this.eventTimeStamp = new Date().getTime();
+		this.createTime = eventTimeStamp;
+		this.serviceType = setRandomServiceType();
+		this.originationPage = setRandomOriginationPage();
+		this.agentId = "undefined";
+		this.endReason = "undefined";
+		this.originationChannel = setRandomOriginationChannel();
 	}
-	public void setId(int id) {
-		this.id = id;
+	
+	private String setRandomServiceType() {
+		int choise = new Random().nextInt(3);
+		switch (choise) {
+			case 0:
+				return "new account";
+
+			case 1:
+				return "payment";
+
+			case 2:
+				return "delivery";
+		}
+		
+		return null;
 	}
-	public String getEventType() {
-		return eventType;
+	
+	private String setRandomOriginationPage() {
+		int choise = new Random().nextInt(3);
+		switch (choise) {
+			case 0:
+				return "login";
+
+			case 1:
+				return "balance";
+
+			case 2:
+				return "transfer";
+		}
+		
+		return null;
 	}
-	public void setEventType(String eventType) {
-		this.eventType = eventType;
+	
+	private String setRandomOriginationChannel() {
+		int choise = new Random().nextInt(3);
+		switch (choise) {
+			case 0:
+				return "webchat";
+
+			case 1:
+				return "sms";
+
+			case 2:
+				return "wechat";
+		}
+		
+		return null;
 	}
-	public Date getEventTimeStamp() {
-		return eventTimeStamp;
-	}
-	public void setEventTimeStamp(Date eventTimeStamp) {
-		this.eventTimeStamp = eventTimeStamp;
-	}
-	public Date getCreateTime() {
-		return createTime;
-	}
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-	public Date getDeliveryTime() {
-		return deliveryTime;
-	}
-	public void setDeliveryTime(Date deliveryTime) {
-		this.deliveryTime = deliveryTime;
-	}
-	public Date getEndTime() {
-		return endTime;
-	}
-	public void setEndTime(Date endTime) {
-		this.endTime = endTime;
-	}
-	public String getServiceType() {
-		return serviceType;
-	}
-	public void setServiceType(String serviceType) {
-		this.serviceType = serviceType;
-	}
-	public String getOriginationPage() {
-		return originationPage;
-	}
-	public void setOriginationPage(String originationPage) {
-		this.originationPage = originationPage;
-	}
-	public String getAgentId() {
-		return agentId;
-	}
-	public void setAgentId(String agentId) {
-		this.agentId = agentId;
-	}
-	public String getEndReason() {
-		return endReason;
-	}
-	public void setEndReason(String endReason) {
-		this.endReason = endReason;
-	}
-	public String getOriginationChannel() {
-		return originationChannel;
-	}
-	public void setOriginationChannel(String originationChannel) {
-		this.originationChannel = originationChannel;
-	}
+
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", eventType=" + eventType + ", eventTimeStamp=" + eventTimeStamp + ", createTime="
 				+ createTime + ", deliveryTime=" + deliveryTime + ", endTime=" + endTime + ", serviceType="
-				+ serviceType + ", originationPage=" + originationPage + ", agentId=" + agentId + ", EndReason="
-				+ endReason + ", OriginationChannel=" + originationChannel + "]";
+				+ serviceType + ", originationPage=" + originationPage + ", agentId=" + agentId + ", endReason="
+				+ endReason + ", originationChannel=" + originationChannel + "]";
 	}
-	
-	
 
 }

@@ -8,6 +8,7 @@ import com.vladaver87.eventsgenerator.model.EventGenerator;
 @SpringBootApplication
 public class EventsgeneratorApplication {
 
+	
 	public static void main(String[] args) {
 		SpringApplication.run(EventsgeneratorApplication.class, args);
 		EventGenerator eventGenerator = new EventGenerator();
