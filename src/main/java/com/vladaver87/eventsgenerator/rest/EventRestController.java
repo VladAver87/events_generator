@@ -1,4 +1,4 @@
-package com.vladaver87.eventsgenerator.controller;
+package com.vladaver87.eventsgenerator.rest;
 
 import java.util.List;
 

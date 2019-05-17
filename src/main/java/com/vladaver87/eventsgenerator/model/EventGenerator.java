@@ -10,15 +10,33 @@ import org.springframework.stereotype.Component;
 @Component
 public class EventGenerator {
 	
+	private List<Event> events = new ArrayList<>();
 	private static final Logger log = LoggerFactory.getLogger(EventGenerator.class);
 	
 	public List<Event> generateEvent() {
-		List<Event> events = new ArrayList<>();
 		Event e = new Event();
 		events.add(e);
 		log.info(e.toString());	
 		return events;
 			
 	}
-
+	
+	public List<Event> getEvents(){
+	
+		return events;
+	}
+	
+	public void saveEvent(String eventType) {
+		Event e = new Event(eventType);
+		events.add(e);
+	}
+	
+	public List<String> getEventType() {
+		List<String> eventsType = new ArrayList<>();	
+		eventsType.add("start");
+		eventsType.add("join");
+		eventsType.add("end");
+		
+		return eventsType;
+	}
 }

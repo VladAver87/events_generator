@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Events</title>
+  <style type="text/css">
+   TABLE {
+    border: 2px double #000; /* Рамка вокруг таблицы */
+   }
+   TD, TH {
+    padding: 5px #000; /* Поля вокруг текста */
+    border: 1px solid #000; /* Рамка вокруг ячеек */
+   }
+  </style>
+</head>
+<body>
+	<h2>Create New Event</h2>
+	<br>
+		<form action="#" th:action="@{/saveEvent}" th:object="${event}" method="POST">
+		
+			<input type="text" th:field="*{eventType}" placeholder="Event Type">
+			
+			<button type="submit">Add Event</button>
+		
+		
+		</form>
+	<h2>Events</h2>
+	<br>
+	<table>
+    <tr>
+        <th>Id</th>
+        <th>Event Type</th>
+        <th>Event TimeStamp</th>
+        <th>Create Time</th>
+        <th>Delivery Time</th>
+        <th>End Time</th>
+        <th>Service Type</th>
+        <th>Origination Page</th>
+        <th>Agent Id</th>
+        <th>End Reason</th>
+        <th>Origination Channel</th>
+    </tr>
+    <tr th:each="event : ${events}">
+        <td th:text="${event.id}">Id</td>
+        <td th:text="${event.eventType}">Event Type</td>
+        <td th:text="${event.eventTimeStamp}">Event TimeStamp</td>
+        <td th:text="${event.createTime}">Create Time</td>
+        <td th:text="${event.deliveryTime}">Delivery Time</td>
+        <td th:text="${event.endTime}">End Time</td>
+        <td th:text="${event.serviceType}">Service Type</td>
+        <td th:text="${event.originationPage}">Origination Page</td>
+        <td th:text="${event.agentId}">Agent Id</td>
+        <td th:text="${event.endReason}">End Reason</td>
+        <td th:text="${event.originationChannel}">Origination Channel</td>
+    </tr>
+</table>
+
+	
+
+</body>
+</html>

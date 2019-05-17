@@ -3,17 +3,15 @@ package com.vladaver87.eventsgenerator.model;
 import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter
 @Getter
+@ToString
 @Component
 @Scope("prototype")
 public class Event {
@@ -30,6 +28,19 @@ public class Event {
 	private String endReason;
 	private String originationChannel;
 	
+	
+	public Event(String eventType) {
+		this.eventType = eventType;
+		this.id = UUID.randomUUID();
+		this.eventTimeStamp = new Date().getTime();
+		this.createTime = eventTimeStamp;
+		this.serviceType = setRandomServiceType();
+		this.originationPage = setRandomOriginationPage();
+		this.agentId = "undefined";
+		this.endReason = "undefined";
+		this.originationChannel = setRandomOriginationChannel();
+		
+	}
 	
 	public Event() {
 		this.id = UUID.randomUUID();
@@ -89,14 +100,6 @@ public class Event {
 		}
 		
 		return null;
-	}
-
-	@Override
-	public String toString() {
-		return "Event [id=" + id + ", eventType=" + eventType + ", eventTimeStamp=" + eventTimeStamp + ", createTime="
-				+ createTime + ", deliveryTime=" + deliveryTime + ", endTime=" + endTime + ", serviceType="
-				+ serviceType + ", originationPage=" + originationPage + ", agentId=" + agentId + ", endReason="
-				+ endReason + ", originationChannel=" + originationChannel + "]";
 	}
 
 }
