@@ -31,7 +31,7 @@ public class EventGenerator {
 		events.add(e);
 	}
 	
-	public List<String> getEventType() {
+	public List<String> getListEventsType() {
 		List<String> eventsType = new ArrayList<>();	
 		eventsType.add("start");
 		eventsType.add("join");
