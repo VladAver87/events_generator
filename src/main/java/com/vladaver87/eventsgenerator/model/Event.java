@@ -5,6 +5,7 @@ import java.util.UUID;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -12,6 +13,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @Component
+@NoArgsConstructor
 @Scope("prototype")
 public class Event {
 	
@@ -27,10 +29,9 @@ public class Event {
 	private String endReason;
 	private String originationChannel;
 	
-	
-	public Event(String eventType) {
-		this.eventType = eventType;
-
+	public Event(String serviceType, String originationPage, String originationChannel) {
+		this.serviceType = serviceType;
+		this.originationPage = originationPage;
+		this.originationChannel = originationChannel;
 	}
-
 }

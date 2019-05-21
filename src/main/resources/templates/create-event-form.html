@@ -16,19 +16,39 @@
 <body>
 	<h2>Create New Event</h2>
 	<br>  
-     <form th:action="@{/saveEvent}" th:object="${event}" method="POST">
+     <form th:action="@{/saveEvent}" method="POST">
 		<table>
 			<tr>
-				<td>Select Event Type:</td>
-					<td>
-					<select th:field="*{eventType}">
-					<option th:each="eventType : ${eventsType}"
-							th:value="${eventType}"
-							th:utext="${eventType}"/>
-					</select>
-					</td>
-					</tr>
-					<tr>
+				<td>Select Service Type:</td>
+						<td>
+						<select th:field="*{serviceTypes}">
+						<option th:each="serviceType : ${serviceTypes}"
+								th:value="${serviceType}"
+								th:utext="${serviceType}"/>
+						</select>
+				</td>				
+			</tr>
+			<tr>
+				<td>Select Origination Page:</td>
+						<td>
+						<select th:field="*{originationPages}">
+						<option th:each="originationPage : ${originationPages}"
+								th:value="${originationPage}"
+								th:utext="${originationPage}"/>
+						</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Select Origination Channel:</td>
+						<td>
+						<select th:field="*{originationChannels}">
+						<option th:each="originationChannel : ${originationChannels}"
+								th:value="${originationChannel}"
+								th:utext="${originationChannel}"/>
+						</select>
+				</td>
+			</tr>
+			<tr>
 				<td><input name="submit" type="submit" value="Create Event" /></td>
 			</tr>
 		</table>

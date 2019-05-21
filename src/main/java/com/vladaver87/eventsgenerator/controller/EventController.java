@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.vladaver87.eventsgenerator.model.Event;
 import com.vladaver87.eventsgenerator.model.EventGenerator;
+import com.vladaver87.eventsgenerator.model.EventGenerator.OriginationChannel;
+import com.vladaver87.eventsgenerator.model.EventGenerator.OriginationPage;
+import com.vladaver87.eventsgenerator.model.EventGenerator.ServiceType;
 import com.vladaver87.eventsgenerator.model.EventsStorage;
 
 @Controller
@@ -34,23 +37,24 @@ public class EventController {
 	@GetMapping("/showFormForCreateEvent")
 	public String showFormForCreateEvent(Model model) {
 		
-		Event event = new Event(null);
+		ServiceType[] serviceTypes = ServiceType.values();
+		OriginationPage[] originationPages = OriginationPage.values();
+		OriginationChannel[] originationChannels = OriginationChannel.values();
 		
-		List<String> eventsType = eventGenerator.getListEventsType();
-		
-		model.addAttribute("event", event);
-		
-		model.addAttribute("eventsType", eventsType);
+		model.addAttribute("serviceTypes", serviceTypes);
+		model.addAttribute("originationPages", originationPages);
+		model.addAttribute("originationChannels", originationChannels);
 		
 		return "create-event-form";		
 	}
 
 	@PostMapping("/saveEvent")
-	public String saveCustomer(@ModelAttribute("event") Event event) {
+	public String saveCustomer(@ModelAttribute("serviceTypes") String serviceType, 
+		@ModelAttribute("originationPages") String originationPage, @ModelAttribute("originationChannels") String originationChannel) {		
+		
+		Event event = eventGenerator.createEvent(serviceType, originationPage, originationChannel);
 
-		String eventType = event.getEventType();
-
-		eventsStorage.saveEvent(eventType);
+		eventsStorage.saveEvent(event);
 
 		return "redirect:/events";
 	}

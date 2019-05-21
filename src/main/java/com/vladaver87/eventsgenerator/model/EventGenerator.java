@@ -15,8 +15,42 @@ public class EventGenerator {
 	
 	private static final Logger log = LoggerFactory.getLogger(EventGenerator.class);
 	
-	public Event generateEvent(String eventType) {
-		Event e = new Event(eventType);
+	public enum ServiceType{
+		NEW_ACCOUNT,
+		PAYMENT,
+		DELIVERY;	
+	}
+	
+	public enum OriginationPage{
+		LOGIN,
+		BALANCE,
+		TRANSFER;	
+	}
+	
+	public enum OriginationChannel{
+		WEBCHAT,
+		SMS,
+		WECHAT;	
+	}
+	
+	public Event createEvent(String serviceType, String originationPage, String originationChannel) {
+		Event e = new Event();
+		e.setEventType("start");
+		e.setId(UUID.randomUUID());
+		e.setEventTimeStamp(new Date().getTime());
+		e.setCreateTime(e.getEventTimeStamp());
+		e.setAgentId("undefined");
+		e.setEndReason("undefined");
+		e.setServiceType(serviceType);
+		e.setOriginationPage(originationPage);
+		e.setOriginationChannel(originationChannel);
+		log.info("Create event from web" + e.toString());	
+		return e;
+	}
+	
+	public Event generateEvent() {
+		Event e = new Event();
+		e.setEventType("start");
 		e.setId(UUID.randomUUID());
 		e.setEventTimeStamp(new Date().getTime());
 		e.setCreateTime(e.getEventTimeStamp());
