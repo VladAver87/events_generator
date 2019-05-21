@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vladaver87.eventsgenerator.model.Event;
-import com.vladaver87.eventsgenerator.model.EventGenerator;
+import com.vladaver87.eventsgenerator.model.EventsStorage;
 
 @RestController
 @RequestMapping("/")
 public class EventRestController {
 	
 	@Autowired
-	private EventGenerator eventGenerator;
+	private EventsStorage eventsStorage;
 	
 	@GetMapping("/events")
 	public List<Event> getEvents(){
 		
-		return eventGenerator.generateEvent();
+		return eventsStorage.getEvents();
 	}
 
 }

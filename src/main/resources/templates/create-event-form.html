@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Events</title>
+  <style type="text/css">
+   TABLE {
+    border: 2px double #000; /* Рамка вокруг таблицы */
+   }
+   TD, TH {
+    padding: 5px #000; /* Поля вокруг текста */
+    border: 1px solid #000; /* Рамка вокруг ячеек */
+   }
+  </style>
+</head>
+<body>
+	<h2>Create New Event</h2>
+	<br>  
+     <form th:action="@{/saveEvent}" th:object="${event}" method="POST">
+		<table>
+			<tr>
+				<td>Select Event Type:</td>
+					<td>
+					<select th:field="*{eventType}">
+					<option th:each="eventType : ${eventsType}"
+							th:value="${eventType}"
+							th:utext="${eventType}"/>
+					</select>
+					</td>
+					</tr>
+					<tr>
+				<td><input name="submit" type="submit" value="Create Event" /></td>
+			</tr>
+		</table>
+	</form>
+	<br>
+	<hr>
+
+
+</body>
+</html>

@@ -11,29 +11,38 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.vladaver87.eventsgenerator.model.Event;
 import com.vladaver87.eventsgenerator.model.EventGenerator;
+import com.vladaver87.eventsgenerator.model.EventsStorage;
 
 @Controller
 public class EventController {
 
 	@Autowired
 	private EventGenerator eventGenerator;
+	@Autowired
+	private EventsStorage eventsStorage;
 
 	@GetMapping("/")
 	public String listEvents(Model model) {
 
-		List<Event> events = eventGenerator.getEvents();
-		
-		List<String> eventsType = eventGenerator.getListEventsType();
+		List<Event> events = eventsStorage.getEvents();
 
 		model.addAttribute("events", events);
+
+		return "listEvents";
+	}
+	
+	@GetMapping("/showFormForCreateEvent")
+	public String showFormForCreateEvent(Model model) {
+		
+		Event event = new Event(null);
+		
+		List<String> eventsType = eventGenerator.getListEventsType();
+		
+		model.addAttribute("event", event);
 		
 		model.addAttribute("eventsType", eventsType);
 		
-		Event event = new Event();
-		
-		model.addAttribute("event", event);
-
-		return "listEvents";
+		return "create-event-form";		
 	}
 
 	@PostMapping("/saveEvent")
@@ -41,7 +50,7 @@ public class EventController {
 
 		String eventType = event.getEventType();
 
-		eventGenerator.saveEvent(eventType);
+		eventsStorage.saveEvent(eventType);
 
 		return "redirect:/";
 	}

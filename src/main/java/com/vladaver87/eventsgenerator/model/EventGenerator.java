@@ -1,7 +1,10 @@
 package com.vladaver87.eventsgenerator.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,25 +13,75 @@ import org.springframework.stereotype.Component;
 @Component
 public class EventGenerator {
 	
-	private List<Event> events = new ArrayList<>();
 	private static final Logger log = LoggerFactory.getLogger(EventGenerator.class);
 	
-	public List<Event> generateEvent() {
-		Event e = new Event();
-		events.add(e);
+	public Event generateEvent(String eventType) {
+		Event e = new Event(eventType);
+		e.setId(UUID.randomUUID());
+		e.setEventTimeStamp(new Date().getTime());
+		e.setCreateTime(e.getEventTimeStamp());
+		e.setServiceType(this.setRandomServiceType());
+		e.setOriginationPage(this.setRandomOriginationPage());
+		e.setAgentId("undefined");
+		e.setEndReason("undefined");
+		e.setOriginationChannel(this.setRandomOriginationChannel());
 		log.info(e.toString());	
-		return events;
+		return e;
 			
 	}
 	
-	public List<Event> getEvents(){
-	
-		return events;
+	private String setRandomServiceType() {
+		int choise = new Random().nextInt(3);
+		switch (choise) {
+			case 0:
+				return "new account";
+
+			case 1:
+				return "payment";
+
+			case 2:
+				return "delivery";
+				
+			default:			
+		}
+		
+		return null;
 	}
 	
-	public void saveEvent(String eventType) {
-		Event e = new Event(eventType);
-		events.add(e);
+	private String setRandomOriginationPage() {
+		int choise = new Random().nextInt(3);
+		switch (choise) {
+			case 0:
+				return "login";
+
+			case 1:
+				return "balance";
+
+			case 2:
+				return "transfer";
+				
+			default:	
+		}
+		
+		return null;
+	}
+	
+	private String setRandomOriginationChannel() {
+		int choise = new Random().nextInt(3);
+		switch (choise) {
+			case 0:
+				return "webchat";
+
+			case 1:
+				return "sms";
+
+			case 2:
+				return "wechat";
+				
+			default:
+		}
+		
+		return null;
 	}
 	
 	public List<String> getListEventsType() {

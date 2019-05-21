@@ -14,31 +14,11 @@
   </style>
 </head>
 <body>
-	<h2>Create New Event</h2>
 	<br>
-
-     
-     <form th:action="@{/saveEvent}" th:object="${event}" method="POST">
-		<table>
-			<tr>
-				<td>Select Event Type:</td>
-					<td>
-					<select th:field="*{eventType}">
-					<option th:each="eventType : ${eventsType}"
-							th:value="${eventType}"
-							th:utext="${eventType}"/>
-					</select>
-					</td>
-					</tr>
-					<tr>
-				<td><input name="submit" type="submit" value="Create Event" /></td>
-			</tr>
-		</table>
-	</form>
 	<br>
+	<a th:href="@{/showFormForCreateEvent}">Create New Event</a>
 	<hr>
 	<h2>Events</h2>
-	<br>
 	<table>
     <tr>
         <th>Id</th>
