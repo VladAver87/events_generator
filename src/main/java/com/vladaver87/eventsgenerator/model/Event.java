@@ -23,15 +23,17 @@ public class Event {
 	private long createTime;
 	private Date deliveryTime;
 	private Date endTime;
-	private String serviceType;
-	private String originationPage;
+	private ServiceType serviceType;
+	private OriginationPage originationPage;
 	private String agentId;
 	private String endReason;
-	private String originationChannel;
+	private OriginationChannel originationChannel;
 	
-	public Event(String serviceType, String originationPage, String originationChannel) {
+
+	public Event(ServiceType serviceType, OriginationPage originationPage, OriginationChannel originationChannel) {
 		this.serviceType = serviceType;
 		this.originationPage = originationPage;
 		this.originationChannel = originationChannel;
 	}
+	
 }

@@ -5,54 +5,54 @@
 <title>Events</title>
   <style type="text/css">
    TABLE {
-    border: 2px double #000; /* Рамка вокруг таблицы */
+    border: 2px double #000; /* Ð Ð°Ð¼ÐºÐ° Ð²Ð¾ÐºÑÑÐ³ ÑÐ°Ð±Ð»Ð¸ÑÑ */
    }
    TD, TH {
-    padding: 5px #000; /* Поля вокруг текста */
-    border: 1px solid #000; /* Рамка вокруг ячеек */
+    padding: 5px #000; /* ÐÐ¾Ð»Ñ Ð²Ð¾ÐºÑÑÐ³ ÑÐµÐºÑÑÐ° */
+    border: 1px solid #000; /* Ð Ð°Ð¼ÐºÐ° Ð²Ð¾ÐºÑÑÐ³ ÑÑÐµÐµÐº */
    }
   </style>
 </head>
 <body>
 	<h2>Create New Event</h2>
 	<br>  
-     <form th:action="@{/saveEvent}" method="POST">
-		<table>
-			<tr>
-				<td>Select Service Type:</td>
-						<td>
-						<select th:field="*{serviceTypes}">
-						<option th:each="serviceType : ${serviceTypes}"
-								th:value="${serviceType}"
-								th:utext="${serviceType}"/>
-						</select>
-				</td>				
-			</tr>
-			<tr>
-				<td>Select Origination Page:</td>
-						<td>
-						<select th:field="*{originationPages}">
-						<option th:each="originationPage : ${originationPages}"
-								th:value="${originationPage}"
-								th:utext="${originationPage}"/>
-						</select>
-				</td>
-			</tr>
-			<tr>
-				<td>Select Origination Channel:</td>
-						<td>
-						<select th:field="*{originationChannels}">
-						<option th:each="originationChannel : ${originationChannels}"
-								th:value="${originationChannel}"
-								th:utext="${originationChannel}"/>
-						</select>
-				</td>
-			</tr>
-			<tr>
-				<td><input name="submit" type="submit" value="Create Event" /></td>
-			</tr>
-		</table>
-	</form>
+	     <form th:action="@{/saveEvent}" th:object="${eventAttributes}" method="POST">
+			<table>
+				<tr>
+					<td>Select Service Type:</td>
+							<td>
+							<select th:field="*{serviceTypes}">
+							<option th:each="serviceType : ${serviceTypes}"
+									th:value="${serviceType}"
+									th:utext="${serviceType}"/>
+							</select>
+					</td>				
+				</tr>
+				<tr>
+					<td>Select Origination Page:</td>
+							<td>
+							<select th:field="*{originationPages}">
+							<option th:each="originationPage : ${originationPages}"
+									th:value="${originationPage}"
+									th:utext="${originationPage}"/>
+							</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Select Origination Channel:</td>
+							<td>
+							<select th:field="*{originationChannels}">
+							<option th:each="originationChannel : ${originationChannels}"
+									th:value="${originationChannel}"
+									th:utext="${originationChannel}"/>
+							</select>
+					</td>
+				</tr>
+				<tr>
+					<td><input name="submit" type="submit" value="Create Event" /></td>
+				</tr>
+			</table>
+		</form>
 	<br>
 	<hr>
 

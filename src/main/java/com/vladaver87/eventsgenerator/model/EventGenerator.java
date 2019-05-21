@@ -15,25 +15,7 @@ public class EventGenerator {
 	
 	private static final Logger log = LoggerFactory.getLogger(EventGenerator.class);
 	
-	public enum ServiceType{
-		NEW_ACCOUNT,
-		PAYMENT,
-		DELIVERY;	
-	}
-	
-	public enum OriginationPage{
-		LOGIN,
-		BALANCE,
-		TRANSFER;	
-	}
-	
-	public enum OriginationChannel{
-		WEBCHAT,
-		SMS,
-		WECHAT;	
-	}
-	
-	public Event createEvent(String serviceType, String originationPage, String originationChannel) {
+	public Event createEvent(ServiceType serviceType, OriginationPage originationPage, OriginationChannel originationChannel) {
 		Event e = new Event();
 		e.setEventType("start");
 		e.setId(UUID.randomUUID());
@@ -48,6 +30,7 @@ public class EventGenerator {
 		return e;
 	}
 	
+	/*
 	public Event generateEvent() {
 		Event e = new Event();
 		e.setEventType("start");
@@ -126,4 +109,5 @@ public class EventGenerator {
 		
 		return eventsType;
 	}
+	*/
 }

@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.vladaver87.eventsgenerator.model.Event;
+import com.vladaver87.eventsgenerator.model.EventAttributes;
 import com.vladaver87.eventsgenerator.model.EventGenerator;
-import com.vladaver87.eventsgenerator.model.EventGenerator.OriginationChannel;
-import com.vladaver87.eventsgenerator.model.EventGenerator.OriginationPage;
-import com.vladaver87.eventsgenerator.model.EventGenerator.ServiceType;
+import com.vladaver87.eventsgenerator.model.OriginationChannel;
+import com.vladaver87.eventsgenerator.model.OriginationPage;
+import com.vladaver87.eventsgenerator.model.ServiceType;
 import com.vladaver87.eventsgenerator.model.EventsStorage;
 
 @Controller
@@ -23,6 +24,8 @@ public class EventController {
 	private EventGenerator eventGenerator;
 	@Autowired
 	private EventsStorage eventsStorage;
+	@Autowired
+	private EventAttributes eventAttributes;
 
 	@GetMapping("/events")
 	public String listEvents(Model model) {
@@ -37,23 +40,24 @@ public class EventController {
 	@GetMapping("/showFormForCreateEvent")
 	public String showFormForCreateEvent(Model model) {
 		
-		ServiceType[] serviceTypes = ServiceType.values();
-		OriginationPage[] originationPages = OriginationPage.values();
-		OriginationChannel[] originationChannels = OriginationChannel.values();
+		List<ServiceType> serviceTypes = eventAttributes.getServiceTypes();
+		List<OriginationPage> originationPages = eventAttributes.getOriginationPages();
+		List<OriginationChannel> originationChannels = eventAttributes.getOriginationChannels();
 		
 		model.addAttribute("serviceTypes", serviceTypes);
 		model.addAttribute("originationPages", originationPages);
 		model.addAttribute("originationChannels", originationChannels);
+		model.addAttribute("eventAttributes", eventAttributes);
 		
 		return "create-event-form";		
 	}
 
 	@PostMapping("/saveEvent")
-	public String saveCustomer(@ModelAttribute("serviceTypes") String serviceType, 
-		@ModelAttribute("originationPages") String originationPage, @ModelAttribute("originationChannels") String originationChannel) {		
+	public String saveCustomer(@ModelAttribute("eventAttributes") EventAttributes eventAttributes) {		
 		
-		Event event = eventGenerator.createEvent(serviceType, originationPage, originationChannel);
-
+		Event event = eventGenerator.createEvent(eventAttributes.getServiceType(), eventAttributes.getOriginationPage(),
+				eventAttributes.getOriginationChannel());
+		
 		eventsStorage.saveEvent(event);
 
 		return "redirect:/events";
