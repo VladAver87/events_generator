@@ -11,7 +11,7 @@ import com.vladaver87.eventsgenerator.model.Event;
 import com.vladaver87.eventsgenerator.model.EventsStorage;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api")
 public class EventRestController {
 	
 	@Autowired

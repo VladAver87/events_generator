@@ -21,7 +21,7 @@ public class EventController {
 	@Autowired
 	private EventsStorage eventsStorage;
 
-	@GetMapping("/")
+	@GetMapping("/events")
 	public String listEvents(Model model) {
 
 		List<Event> events = eventsStorage.getEvents();
@@ -52,7 +52,7 @@ public class EventController {
 
 		eventsStorage.saveEvent(eventType);
 
-		return "redirect:/";
+		return "redirect:/events";
 	}
 
 }
