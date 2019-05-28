@@ -30,6 +30,17 @@ public class EventGenerator {
 		return e;
 	}
 	
+	public Event joinEvent(Event e) {
+		e.setEventType("join");
+		e.setDeliveryTime(new Date().getTime());
+		e.setAgentId("Agent_Id_" + new Random().nextInt(17));
+		
+		return e;	
+	}
+	
+	
+	
+	
 	/*
 	public Event generateEvent() {
 		Event e = new Event();
@@ -100,14 +111,6 @@ public class EventGenerator {
 		
 		return null;
 	}
-	
-	public List<String> getListEventsType() {
-		List<String> eventsType = new ArrayList<>();	
-		eventsType.add("start");
-		eventsType.add("join");
-		eventsType.add("end");
-		
-		return eventsType;
-	}
+
 	*/
 }

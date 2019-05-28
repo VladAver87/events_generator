@@ -24,22 +24,22 @@ public class EventController {
 	private EventGenerator eventGenerator;
 	@Autowired
 	private EventsStorage eventsStorage;
-	@Autowired
-	private EventAttributes eventAttributes;
+
+	private EventAttributes eventAttributes = new EventAttributes();
 
 	@GetMapping("/events")
 	public String listEvents(Model model) {
-
+		
 		List<Event> events = eventsStorage.getEvents();
 
 		model.addAttribute("events", events);
 
 		return "listEvents";
 	}
-	
+
 	@GetMapping("/showFormForCreateEvent")
 	public String showFormForCreateEvent(Model model) {
-		
+
 		ServiceType[] serviceType = ServiceType.values();
 		OriginationPage[] originationPage = OriginationPage.values();
 		OriginationChannel[] originationChannel = OriginationChannel.values();
@@ -48,16 +48,16 @@ public class EventController {
 		model.addAttribute("originationPage", originationPage);
 		model.addAttribute("originationChannel", originationChannel);
 		model.addAttribute("eventAttributes", eventAttributes);
-		
-		return "create-event-form";		
+
+		return "create-event-form";
 	}
 
 	@PostMapping("/saveEvent")
-	public String saveCustomer(@ModelAttribute("eventAttributes") EventAttributes eventAttributes) {		
-		
+	public String saveCustomer(@ModelAttribute("eventAttributes") EventAttributes eventAttributes) {
+
 		Event event = eventGenerator.createEvent(eventAttributes.getServiceType(), eventAttributes.getOriginationPage(),
 				eventAttributes.getOriginationChannel());
-		
+
 		eventsStorage.saveEvent(event);
 
 		return "redirect:/events";
