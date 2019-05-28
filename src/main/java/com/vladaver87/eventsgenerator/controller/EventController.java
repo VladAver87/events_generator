@@ -40,13 +40,13 @@ public class EventController {
 	@GetMapping("/showFormForCreateEvent")
 	public String showFormForCreateEvent(Model model) {
 		
-		List<ServiceType> serviceTypes = eventAttributes.getServiceTypes();
-		List<OriginationPage> originationPages = eventAttributes.getOriginationPages();
-		List<OriginationChannel> originationChannels = eventAttributes.getOriginationChannels();
-		
-		model.addAttribute("serviceTypes", serviceTypes);
-		model.addAttribute("originationPages", originationPages);
-		model.addAttribute("originationChannels", originationChannels);
+		ServiceType[] serviceType = ServiceType.values();
+		OriginationPage[] originationPage = OriginationPage.values();
+		OriginationChannel[] originationChannel = OriginationChannel.values();
+
+		model.addAttribute("serviceType", serviceType);
+		model.addAttribute("originationPage", originationPage);
+		model.addAttribute("originationChannel", originationChannel);
 		model.addAttribute("eventAttributes", eventAttributes);
 		
 		return "create-event-form";		

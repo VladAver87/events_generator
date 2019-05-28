@@ -21,8 +21,8 @@
 				<tr>
 					<td>Select Service Type:</td>
 							<td>
-							<select th:field="*{serviceTypes}">
-							<option th:each="serviceType : ${serviceTypes}"
+							<select th:field="*{serviceType}">
+							<option th:each="serviceType : ${serviceType}"
 									th:value="${serviceType}"
 									th:utext="${serviceType}"/>
 							</select>
@@ -31,8 +31,8 @@
 				<tr>
 					<td>Select Origination Page:</td>
 							<td>
-							<select th:field="*{originationPages}">
-							<option th:each="originationPage : ${originationPages}"
+							<select th:field="*{originationPage}">
+							<option th:each="originationPage : ${originationPage}"
 									th:value="${originationPage}"
 									th:utext="${originationPage}"/>
 							</select>
@@ -41,8 +41,8 @@
 				<tr>
 					<td>Select Origination Channel:</td>
 							<td>
-							<select th:field="*{originationChannels}">
-							<option th:each="originationChannel : ${originationChannels}"
+							<select th:field="*{originationChannel}">
+							<option th:each="originationChannel : ${originationChannel}"
 									th:value="${originationChannel}"
 									th:utext="${originationChannel}"/>
 							</select>
