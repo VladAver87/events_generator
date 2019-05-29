@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.vladaver87.eventsgenerator.model.Event;
 import com.vladaver87.eventsgenerator.model.EventAttributes;
 import com.vladaver87.eventsgenerator.model.EventGenerator;
+import com.vladaver87.eventsgenerator.model.EventJoiner;
 import com.vladaver87.eventsgenerator.model.OriginationChannel;
 import com.vladaver87.eventsgenerator.model.OriginationPage;
 import com.vladaver87.eventsgenerator.model.ServiceType;
@@ -24,6 +25,8 @@ public class EventController {
 	private EventGenerator eventGenerator;
 	@Autowired
 	private EventsStorage eventsStorage;
+	@Autowired
+	private EventJoiner eventJoiner;
 
 	private EventAttributes eventAttributes = new EventAttributes();
 
@@ -59,6 +62,8 @@ public class EventController {
 				eventAttributes.getOriginationChannel());
 
 		eventsStorage.saveEvent(event);
+		
+		eventJoiner.joining(event);
 
 		return "redirect:/events";
 	}

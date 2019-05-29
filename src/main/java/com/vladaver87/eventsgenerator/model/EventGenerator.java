@@ -28,17 +28,7 @@ public class EventGenerator {
 		e.setOriginationChannel(originationChannel);
 		log.info("Create event from web" + e.toString());	
 		return e;
-	}
-	
-	public Event joinEvent(Event e) {
-		e.setEventType("join");
-		e.setDeliveryTime(new Date().getTime());
-		e.setAgentId("Agent_Id_" + new Random().nextInt(17));
-		
-		return e;	
-	}
-	
-	
+	}	
 	
 	
 	/*
