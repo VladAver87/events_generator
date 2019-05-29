@@ -1,4 +1,4 @@
-package com.vladaver87.eventsgenerator.model;
+package com.vladaver87.eventsgenerator.generator;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,6 +10,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import com.vladaver87.eventsgenerator.model.Event;
+import com.vladaver87.eventsgenerator.model.OriginationChannel;
+import com.vladaver87.eventsgenerator.model.OriginationPage;
+import com.vladaver87.eventsgenerator.model.ServiceType;
+
 @Component
 public class EventGenerator {
 	
@@ -19,14 +24,14 @@ public class EventGenerator {
 		Event e = new Event();
 		e.setEventType("start");
 		e.setId(UUID.randomUUID());
-		e.setEventTimeStamp(new Date().getTime());
+		e.setEventTimeStamp(new Date());
 		e.setCreateTime(e.getEventTimeStamp());
 		e.setAgentId("undefined");
 		e.setEndReason("undefined");
 		e.setServiceType(serviceType);
 		e.setOriginationPage(originationPage);
 		e.setOriginationChannel(originationChannel);
-		log.info("Create event from web" + e.toString());	
+		log.info("Create event from web " + e.toString());	
 		return e;
 	}	
 	

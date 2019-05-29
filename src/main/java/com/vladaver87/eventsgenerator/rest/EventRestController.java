@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vladaver87.eventsgenerator.model.Event;
-import com.vladaver87.eventsgenerator.model.EventsStorage;
+import com.vladaver87.eventsgenerator.storage.EventsStorage;
 
 @RestController
 @RequestMapping("/api")

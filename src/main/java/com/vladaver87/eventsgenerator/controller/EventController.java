@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.vladaver87.eventsgenerator.generator.EventGenerator;
+import com.vladaver87.eventsgenerator.generator.EventJoiner;
 import com.vladaver87.eventsgenerator.model.Event;
 import com.vladaver87.eventsgenerator.model.EventAttributes;
-import com.vladaver87.eventsgenerator.model.EventGenerator;
-import com.vladaver87.eventsgenerator.model.EventJoiner;
 import com.vladaver87.eventsgenerator.model.OriginationChannel;
 import com.vladaver87.eventsgenerator.model.OriginationPage;
 import com.vladaver87.eventsgenerator.model.ServiceType;
-import com.vladaver87.eventsgenerator.model.EventsStorage;
+import com.vladaver87.eventsgenerator.storage.EventsStorage;
 
 @Controller
 public class EventController {
@@ -56,7 +56,7 @@ public class EventController {
 	}
 
 	@PostMapping("/saveEvent")
-	public String saveCustomer(@ModelAttribute("eventAttributes") EventAttributes eventAttributes) {
+	public String saveEvent(@ModelAttribute("eventAttributes") EventAttributes eventAttributes) {
 
 		Event event = eventGenerator.createEvent(eventAttributes.getServiceType(), eventAttributes.getOriginationPage(),
 				eventAttributes.getOriginationChannel());

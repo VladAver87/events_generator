@@ -1,5 +1,6 @@
 package com.vladaver87.eventsgenerator.model;
 
+import java.util.Date;
 import java.util.UUID;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,10 +15,10 @@ public class Event {
 	
 	private UUID id;
 	private String eventType;
-	private long eventTimeStamp;
-	private long createTime;
-	private long deliveryTime;
-	private long endTime;
+	private Date eventTimeStamp;
+	private Date createTime;
+	private Date deliveryTime;
+	private Date endTime;
 	private ServiceType serviceType;
 	private OriginationPage originationPage;
 	private String agentId;
