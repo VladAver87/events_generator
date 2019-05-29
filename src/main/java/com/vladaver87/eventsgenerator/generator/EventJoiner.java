@@ -19,26 +19,23 @@ public class EventJoiner {
 			public void run() {
 				e.setEventType("join");
 				e.setDeliveryTime(new Date());
-				e.setAgentId("Agent_Id_" + new Random().nextInt(17));			
+				e.setAgentId("Agent_Id_" + new Random().nextInt(17));		
+						service.schedule(new Runnable() {
+		
+							@Override
+							public void run() {
+								e.setEventType("end");
+								e.setEndTime(new Date());
+								e.setEndReason("NORMAL");			
+							}
+							
+						}, new Random().nextInt(15), TimeUnit.SECONDS);
+						
+					service.shutdown();	
 			}
 			
 		}, new Random().nextInt(11), TimeUnit.SECONDS);
-		
-		
-		if(!service.isTerminated()) {
-			service.schedule(new Runnable() {
-
-				@Override
-				public void run() {
-					e.setEventType("end");
-					e.setEndTime(new Date());
-					e.setEndReason("NORMAL");			
-				}
-				
-			}, new Random().nextInt(25), TimeUnit.SECONDS);
 			
-		}
-		service.shutdown();		
 	}
 
 }
