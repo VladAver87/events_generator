@@ -23,6 +23,7 @@
 	<hr>
 	<table>
     <tr>
+    	<th>Change Event Type</th>
         <th>Id</th>
         <th>Event Type</th>
         <th>Event TimeStamp</th>
@@ -36,6 +37,7 @@
         <th>Origination Channel</th>
     </tr>
     <tr th:each="event : ${events}">
+    	<td><a th:href="@{update/(eventId=${event.id})}" class="btn btn-danger">Change</a></td>
         <td th:text="${event.id}">Id</td>
         <td th:text="${event.eventType}">Event Type</td>
         <td th:text="${event.eventTimeStamp}">Event TimeStamp</td>

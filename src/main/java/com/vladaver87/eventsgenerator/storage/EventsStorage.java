@@ -2,6 +2,8 @@ package com.vladaver87.eventsgenerator.storage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
 import org.springframework.stereotype.Component;
 
 import com.vladaver87.eventsgenerator.model.Event;
@@ -21,4 +23,14 @@ public class EventsStorage {
 		events.add(event);
 	}
 
+	public Event getById(UUID id) {
+		Event event = null;
+		for (Event e : events) {
+			UUID result = e.getId();
+			if (result.equals(id)) {
+				event = e;
+			}
+		}
+		return event;
+	}
 }

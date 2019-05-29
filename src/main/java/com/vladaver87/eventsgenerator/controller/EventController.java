@@ -1,6 +1,7 @@
 package com.vladaver87.eventsgenerator.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,9 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.vladaver87.eventsgenerator.generator.EventGenerator;
 import com.vladaver87.eventsgenerator.generator.EventJoiner;
+import com.vladaver87.eventsgenerator.generator.ManualEventTypeChanger;
 import com.vladaver87.eventsgenerator.model.Event;
 import com.vladaver87.eventsgenerator.model.EventAttributes;
 import com.vladaver87.eventsgenerator.model.OriginationChannel;
@@ -27,6 +30,8 @@ public class EventController {
 	private EventsStorage eventsStorage;
 	@Autowired
 	private EventJoiner eventJoiner;
+	@Autowired
+	private ManualEventTypeChanger manualEventTypeChanger;
 
 	private EventAttributes eventAttributes = new EventAttributes();
 
@@ -68,4 +73,13 @@ public class EventController {
 		return "redirect:/events";
 	}
 
+	@GetMapping("/update")
+	public String updateEvent(@RequestParam("eventId") UUID id) {
+		
+		Event event = eventsStorage.getById(id);
+		
+		manualEventTypeChanger.changeEventType(event);
+
+		return "redirect:/events";
+	}
 }
