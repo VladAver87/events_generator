@@ -36,12 +36,12 @@ public class EventGenerator {
 	}	
 	
 	
-	/*
+	
 	public Event generateEvent() {
 		Event e = new Event();
 		e.setEventType("start");
 		e.setId(UUID.randomUUID());
-		e.setEventTimeStamp(new Date().getTime());
+		e.setEventTimeStamp(new Date());
 		e.setCreateTime(e.getEventTimeStamp());
 		e.setServiceType(this.setRandomServiceType());
 		e.setOriginationPage(this.setRandomOriginationPage());
@@ -53,17 +53,14 @@ public class EventGenerator {
 			
 	}
 	
-	private String setRandomServiceType() {
-		int choise = new Random().nextInt(3);
+	public String setRandomEndReason() {
+		int choise = new Random().nextInt(2);
 		switch (choise) {
 			case 0:
-				return "new account";
+				return "NORMAL";
 
 			case 1:
-				return "payment";
-
-			case 2:
-				return "delivery";
+				return "ABNORMAL";
 				
 			default:			
 		}
@@ -71,17 +68,35 @@ public class EventGenerator {
 		return null;
 	}
 	
-	private String setRandomOriginationPage() {
+	private ServiceType setRandomServiceType() {
 		int choise = new Random().nextInt(3);
 		switch (choise) {
 			case 0:
-				return "login";
+				return ServiceType.NEW_ACCOUNT;
 
 			case 1:
-				return "balance";
+				return ServiceType.PAYMENT;
 
 			case 2:
-				return "transfer";
+				return ServiceType.DELIVERY;
+				
+			default:			
+		}
+		
+		return null;
+	}
+	
+	private OriginationPage setRandomOriginationPage() {
+		int choise = new Random().nextInt(3);
+		switch (choise) {
+			case 0:
+				return OriginationPage.LOGIN;
+
+			case 1:
+				return OriginationPage.BALANCE;
+
+			case 2:
+				return OriginationPage.TRANSFER;
 				
 			default:	
 		}
@@ -89,17 +104,17 @@ public class EventGenerator {
 		return null;
 	}
 	
-	private String setRandomOriginationChannel() {
+	private OriginationChannel setRandomOriginationChannel() {
 		int choise = new Random().nextInt(3);
 		switch (choise) {
 			case 0:
-				return "webchat";
+				return OriginationChannel.WEBCHAT;
 
 			case 1:
-				return "sms";
+				return OriginationChannel.SMS;
 
 			case 2:
-				return "wechat";
+				return OriginationChannel.WECHAT;
 				
 			default:
 		}
@@ -107,5 +122,5 @@ public class EventGenerator {
 		return null;
 	}
 
-	*/
+	
 }
