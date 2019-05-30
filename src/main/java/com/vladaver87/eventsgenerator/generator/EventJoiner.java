@@ -12,7 +12,7 @@ import com.vladaver87.eventsgenerator.model.Event;
 
 @Component
 public class EventJoiner {
-	
+
 	@Autowired
 	private EventGenerator eventGenerator;
 
@@ -25,28 +25,27 @@ public class EventJoiner {
 				if (e.getEventType().equals("end")) {
 					service.shutdown();
 				} else {
-				e.setEventType("join");
-				e.setDeliveryTime(new Date());
-				e.setAgentId("Agent_Id_" + new Random().nextInt(17));
-				service.schedule(new Runnable() {
+					e.setEventType("join");
+					e.setDeliveryTime(new Date());
+					e.setAgentId("Agent_Id_" + new Random().nextInt(17));
+					service.schedule(new Runnable() {
 
-					@Override
-					public void run() {
-						e.setEventType("end");
-						e.setEndTime(new Date());
-						e.setEndReason(eventGenerator.setRandomEndReason());
-					}
+						@Override
+						public void run() {
+							e.setEventType("end");
+							e.setEndTime(new Date());
+							e.setEndReason(eventGenerator.setRandomEndReason());
+						}
 
-				}, new Random().nextInt(15), TimeUnit.SECONDS);
-				
+					}, new Random().nextInt(15), TimeUnit.SECONDS);
+
 				}
 
 				service.shutdown();
 			}
 
 		}, new Random().nextInt(11), TimeUnit.SECONDS);
-		
-		
+
 	}
 
 }
