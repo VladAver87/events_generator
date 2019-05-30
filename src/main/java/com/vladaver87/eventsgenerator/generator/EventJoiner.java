@@ -22,7 +22,7 @@ public class EventJoiner {
 
 			@Override
 			public void run() {
-				if (!e.getEventType().equals("start")) {
+				if (e.getEventType().equals("end")) {
 					service.shutdown();
 				} else {
 				e.setEventType("join");
