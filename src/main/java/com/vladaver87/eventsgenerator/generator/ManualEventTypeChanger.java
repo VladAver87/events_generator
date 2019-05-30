@@ -6,6 +6,7 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.vladaver87.eventsgenerator.model.EndReason;
 import com.vladaver87.eventsgenerator.model.Event;
 
 @Component
@@ -22,7 +23,7 @@ public class ManualEventTypeChanger {
 		} else if (e.getEventType().equals("join")) {
 			e.setEventType("end");
 			e.setEndTime(new Date());
-			e.setEndReason(eventGenerator.setRandomEndReason());
+			e.setEndReason(eventGenerator.generateEnum(EndReason.values()));
 		}		
 	}
 

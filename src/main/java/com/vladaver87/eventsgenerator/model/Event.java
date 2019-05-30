@@ -22,7 +22,7 @@ public class Event {
 	private ServiceType serviceType;
 	private OriginationPage originationPage;
 	private String agentId;
-	private String endReason;
+	private EndReason endReason;
 	private OriginationChannel originationChannel;
 	
 

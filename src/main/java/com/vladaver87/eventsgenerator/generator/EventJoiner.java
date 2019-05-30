@@ -8,6 +8,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.vladaver87.eventsgenerator.model.EndReason;
 import com.vladaver87.eventsgenerator.model.Event;
 
 @Component
@@ -15,7 +17,7 @@ public class EventJoiner {
 
 	@Autowired
 	private EventGenerator eventGenerator;
-
+	
 	public void joining(Event e) {
 		ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
 		service.schedule(new Runnable() {
@@ -34,7 +36,7 @@ public class EventJoiner {
 						public void run() {
 							e.setEventType("end");
 							e.setEndTime(new Date());
-							e.setEndReason(eventGenerator.setRandomEndReason());
+							e.setEndReason(eventGenerator.generateEnum(EndReason.values()));
 						}
 
 					}, new Random().nextInt(15), TimeUnit.SECONDS);
