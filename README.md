@@ -1,1 +1,1 @@
-Simple Web App events generator using Spring MVC, REST, Thymeleaf
+Simple Web App events generator using Spring Boot, Spring MVC, REST, Thymeleaf
